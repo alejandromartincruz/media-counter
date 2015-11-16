@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>VideoDome</title>
+	<link rel="stylesheet" href="mystyle.css" type="text/css" /> 
+		<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity="sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ==" crossorigin="anonymous">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css" integrity="sha384-aUGj/X2zp5rLCbBxumKTCw2Z50WgIr1vs/PFN4praOTvYXWlVyh2UtNUU0KAUhAX" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script type="text/javascript" src="av.js"></script>
+</head>
+<body>
+<nav class="navbar navbar-inverse navbar-fixed-top">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">
+        <span class="glyphicon glyphicon-expand"></span>
+        Video Counter
+      </a>
+    </div>
+		<p class="navbar-text navbar-right">You have watched <span class="video-time">0</span> seconds of video</p>
+	</div>
+  </div>
+</nav>
+	<div class="container">
+		<div class="panel panel-default transparency">
+		  <div class="panel-body">
+		    <center><h1>VideoDome</h1></center>
+		    <hr>
+		    <div class="form-group">
+		    <form action="/submit_url" method="POST">
+			  <input type="url" class="form-control" name="link" placeholder="Write here the URL of the MP4 video you want to store">
+		</div>
+		<center><button type="submmit"class="btn btn-primary" id="video-link">Add Video</button></center>
+		</form>
+		</div>
+		  <hr>
+		  <div class="place-videos">
+		  	<% if @html.length < 1 %>
+		  		<% 3.times do %>
+				  	<div class="panel-default inside">
+				  		<div class="panel-body">
+				  			<div class="image">
+					  			<img class="inner image" src="http://media1.giphy.com/media/K6nPw4pe3r6Bq/giphy.gif" alt="">
+				  				<h3><span>No video yet</span></h3>
+				  			</div>
+				  		</div>
+				  	</div>
+				<% end %>
+			<%else%>
+				<% @html.each do |video| %>
+					<div class="panel-default inside">
+		  				<div class="panel-body">
+		  					<%= video %>		  					
+		  				</div>
+		  			</div>
+		  		<%end%>
+		  		<% while @index < 3 %>
+		  			<div class="panel-default inside">
+		  				<div class="panel-body">
+		  					<div class="image">
+			  					<img class="inner image" src="http://media1.giphy.com/media/K6nPw4pe3r6Bq/giphy.gif" alt="">
+		  						<h3><span>No video yet</span></h3>
+		  					</div>
+		  				</div>
+		  			</div>
+		  		<% @index += 1 %>
+		  		<% end %>	
+		  	<% end %>
+		  </div>
+		</div>
+	</div>
+
+	<video autoplay loop id="bgvid">
+    	<source src="http://i.istockimg.com/video_passthrough/52436914/153/52436914.mp4" type="video/mp4">
+	</video>
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
+</body>
+</html>
